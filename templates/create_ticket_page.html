@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+			<title>Create Ticket</title>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--===============================================================================================-->	
+			<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<!--===============================================================================================-->
+			<link rel="stylesheet" type="text/css" href="static/css/util.css">
+			<link rel="stylesheet" type="text/css" href="static/css/main.css">
+		<!--===============================================================================================-->
+	</head>
+	<body>
+			<div class="container-login100">
+				<div class="row">
+					<div><a href="/"><b> <h2>Go To Home<h2></b></a></div>						<!-- Post content -->
+					<div class="col-md-6">
+						<div class="section-row sticky-container">
+							<div class="main-post">
+								<div><h1>Please enter asset request information:</h1></div>
+								<form action="" method="POST">
+										{% csrf_token %}
+									<label><b>Title</b></label><br>
+									<input type="text" name="title" style="width: 60%" placeholder="Enter Title" required>
+									<br>
+									<label><b>Description</b></label><br>
+									<textarea name="description" rows="6" cols="100" placeholder="Enter Description" required></textarea>
+									<br><br>
+									<div>
+											
+											<span>Employee Name: {{employee.ename}}</span><br>
+											<span>Employee Location: {{employee.location}}</span><br>
+											<span>Employee Department: {{employee.department}}</span>
+
+									</div>
+
+									
+									<br><br>
+									<div>
+										<label><b>Asset Number</b></label><br>
+										<select name="assetnumber" size="1" required>
+											{% for as in assets %}
+												<option value={{as.pk}}>{{as}}</option>
+											{%endfor %}
+										</select>
+										<br>
+									</div>
+									<br>
+									<div>
+										<label><b>Priority</b></label><br>
+										<select name="priority" size="1">
+											<option value="Low">Low</option>
+											<option value="Normal">Normal</option>
+											<option value="High">High</option>
+											<option value="Emergency">Emergency</option>
+										</select>
+										<br>
+									</div>
+									<br><br>
+									<div style="align-self: center;">
+									<button class="form-submit-button"><img src="static/images/Submitbutton.JPG	" alt="Submit" width="120" height="50"></button>
+									
+									
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div>
+							{% for message in messages%}
+								<h1>  {{message}} </h1>
+							{%endfor%}
+					</div>
+				</div>
+			</div>
+	</body>
+</html>
+					

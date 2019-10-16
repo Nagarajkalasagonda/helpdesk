@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+				<meta charset="utf-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				
+		
+				<title>My Ticket Listing Page</title>
+		
+				<!-- Google font -->
+				<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
+		
+				
+				<link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css"/>
+		
+				
+				<link rel="stylesheet" href="static/css/font-awesome.min.css">
+		
+				
+				<link type="text/css" rel="stylesheet" href="static/css/style.css"/>
+		
+			</head>
+	<body>
+
+		<!-- Header -->
+		<header id="header">
+			<!-- Nav -->
+			<div id="nav">
+				<!-- Main Nav -->
+				<div id="nav-fixed">
+					<div class="container">
+						<!-- logo -->
+						<div class="nav-logo">
+							<a href="/" class="logo"> <img src="static/img/logo.png" alt="Logo"></a>
+						</div>
+						<!-- /logo -->
+
+						<!-- nav -->
+						
+						<!-- /nav -->
+
+				
+				</div>
+				<!-- Aside Nav -->
+			</div>
+			<!-- /Nav -->
+		</header>
+					<div class="container-listing">			
+						<div class="row">
+							<!-- Post content -->
+							<div style="text-align: center">
+									{% for message in messages%}
+										<h2>  {{message}} </h2>
+									{%endfor%}
+							</div>
+							{% for t in tickets %}
+							<form action="" method=POST>{% csrf_token %}
+							<div class="col-md-10">
+								<div class="section-row sticky-container">
+									<div>
+										<div >
+											<h3 class="post-title"><a class="post-img" href="blog-post.html">{{t.title}}</a></h3>
+											<a class="post-category cat-2" href="category.html">{{t.status}} : </a>
+											
+											<span class="post-date"><b>Creation Time:</b> {{t.date}}</span>
+										</div>
+
+										
+										<p class="div-class">{{t.description}}</p>
+										
+										<div>
+												<span class="post-date"><b>Submitted By:</b> {{t.employee.ename}}</span>
+										</div>
+										<div class="post-meta">
+											<span class="post-date"><b>Last Update:</b> {{t.lastdate}}</span>
+										<span><a class="post-category cat-1">Requested Asset : {{t.assetnumber.assetnumber}} </a></span>
+										
+										</div>
+									</div>
+
+								</div>
+								{% if employee.type.pk == 2 %}
+									<input type="text" name="ticket" value="{{t.pk}}" hidden>							
+									<div class="post-meta">
+										<span >
+												<select name="status">
+
+												{% if t.status == 'New' %}
+												  <option value="Allocate">Allocate</option>
+												  <option value="Reject">Reject</option>
+												  
+												{% elif t.status == 'Allocate' or t.status == 'Reject' %}
+												<option value="Close">Close</option>
+												{% endif %}
+												
+												</select>
+											</span>
+											<button type="submit" class="primary-button">State Change</button>
+								</div>
+							</div>
+							
+							</form>
+							{% endif %}
+							
+							{% endfor %}
+							
+							
+						</div>
+			</div>
+	</body>
+</html>
+					

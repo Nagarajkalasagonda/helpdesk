@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+				<meta charset="utf-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				
+		
+				<title>My Ticket Listing Page</title>
+		
+				<!-- Google font -->
+				<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
+		
+				
+				<link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css"/>
+		
+				
+				<link rel="stylesheet" href="static/css/font-awesome.min.css">
+		
+				
+				<link type="text/css" rel="stylesheet" href="static/css/style.css"/>
+		
+			</head>
+	<body>
+
+		<!-- Header -->
+		<header id="header">
+			<!-- Nav -->
+			<div id="nav">
+				<!-- Main Nav -->
+				<div id="nav-fixed">
+					<div class="container">
+						<!-- logo -->
+						<div class="nav-logo">
+							<a href="/" class="logo"> <img src="static/img/logo.png" alt="Logo"></a>
+						</div>
+						<!-- /logo -->
+
+						<!-- nav -->
+						
+						<!-- /nav -->
+
+				
+				</div>
+				<!-- Aside Nav -->
+			</div>
+			<!-- /Nav -->
+		</header>
+					<div class="container-listing">			
+						<div class="row">
+							<!-- Post content -->
+
+							
+							<form action="" method=POST>{% csrf_token %}
+							<div class="col-md-10">
+								<div class="section-row sticky-container">
+                                        <table class="table table-striped table-bordered table-sm">  
+                                                <thead class="thead-dark">  
+                                                <tr>  
+                                                    <th>Asset Number</th>  
+                                                    <th>Asset Type</th>  
+                                                    <th>Location</th>  
+                                                    <th>Department</th>  
+                                                    <th>Owner</th>  
+                                                    <th>Status</th>  
+                                                  
+                                                </tr>  
+                                                </thead>  
+                                                <tbody>  
+                                            {% for asset in assets %}  
+                                                <tr>  
+                                                    <td>{{ asset.assetnumber }}</td>  
+                                                    <td>{{ asset.assettype }}</td>  
+                                                    <td>{{ asset.location }}</td>  
+                                                    <td>{{ asset.department }}</td>  
+                                                    
+                                                    <td>{{ asset.owner.ename }}</td>  
+                                                    <td>{{ asset.status }}</td>   
+                                                </tr>  
+                                            {% endfor %}  
+                                                </tbody>  
+                                            </table>  
+								</div>
+								
+							
+						</div>
+			</div>
+	</body>
+</html>
+					
